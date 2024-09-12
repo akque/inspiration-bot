@@ -109,13 +109,13 @@ client.on('messageCreate', async (msg) => {
 
   if (msg.author.bot) return
 
-  if (msg.channelId != '1282413382372425748') return
+  if (msg.channelId != '1282413382372425748' || msg.channelId != '1283905575268388926') return
 
   const attachment = msg.attachments ? msg.attachments.first(): null
 
   console.log('pre-sort')
 
-  client.channels.cache.get('969572233909506148').send(`new work in <#1282342934804697169> from ${msg.author.username}. ||<@&1028279847031668856> <@&983680839885946920>||`)
+  client.channels.cache.get('969572233909506148').send(`new work in <#${msg.channelId}> from ${msg.author.username}. ||<@&1028279847031668856> <@&983680839885946920>||`)
 
   if (attachment != undefined) {
 
