@@ -109,7 +109,9 @@ client.on('messageCreate', async (msg) => {
 
   if (msg.author.bot) return
 
-  if (msg.channelId != '1282413382372425748' || msg.channelId != '1283905575268388926') return
+  if (msg.channelId != '1282413382372425748') {
+    if (msg.channelId != '1283905575268388926') return
+  }
 
   const attachment = msg.attachments ? msg.attachments.first(): null
 
