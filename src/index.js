@@ -198,9 +198,11 @@ client.on('messageCreate', async (msg) => {
         
           if (i.customId === 'cancel') {
             i.reply('deleted ❌')
-            msg.author.send('your work has been canceled ❌')
-            msg.delete()
             reply.delete()
+            if (msg) {
+              msg.author.send('your work has been canceled ❌')
+              msg.delete()
+            }
           }
     
         })
@@ -289,9 +291,11 @@ client.on('messageCreate', async (msg) => {
         
           if (i.customId === 'cancel') {
             i.reply('deleted ❌')
-            msg.author.send('your work has been canceled ❌')
-            msg.delete()
             reply.delete()
+            if (msg) {
+              msg.author.send('your work has been canceled ❌')
+              msg.delete()
+            }
           }
     
         })
@@ -380,9 +384,5 @@ client.on('messageCreate', async (msg) => {
   }
 
 })
-
-
-
-// AUTH
 
 client.login(process.env.TOKEN)
