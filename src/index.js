@@ -113,11 +113,11 @@ client.on('messageCreate', async (msg) => {
     if (msg.channelId != '1283905575268388926') return
   }
 
-  const attachment = msg.attachments ? msg.attachments.first(): null
-
   console.log('pre-sort')
 
   client.channels.cache.get('969572233909506148').send(`new work in <#${msg.channelId}> from ${msg.author.username}. ||<@&1028279847031668856> <@&983680839885946920>||`)
+
+  const attachment = msg.attachments ? msg.attachments.first() : null
 
   if (attachment != undefined) {
 
@@ -126,7 +126,8 @@ client.on('messageCreate', async (msg) => {
       let attachments = msg.attachments
       for (let file of attachments) {
         console.log('image')
-        const url = file[1].url
+        const imagesMsg = await client.channels.cache.get('1284590468939780136').send({ files: [file[1].url] })
+        const url = imagesMsg.attachments.first().url
         const embed = new EmbedBuilder()
           .setTitle('New submit')
           .setDescription(`Sent by: ${msg.author.username}`)
@@ -158,7 +159,7 @@ client.on('messageCreate', async (msg) => {
             })
         
             categoryCollector.on('collect', async (i) => {
-    
+
               if (i.values.includes('gameplay')) {
                 await client.channels.cache.get('968857527372611594').send({ embeds: [publicEmbed] })
               }
@@ -194,6 +195,7 @@ client.on('messageCreate', async (msg) => {
               await i.reply('sent ✅')
               await msg.author.send(`your work has been accepted and sent to: ${i.values} ✅`)
               await categoryReply.delete()
+              await msg.delete()
     
             })
           }
@@ -287,6 +289,7 @@ client.on('messageCreate', async (msg) => {
               await i.reply('sent ✅')
               await msg.author.send(`your work has been accepted and sent to: ${i.values} ✅`)
               await categoryReply.delete()
+              await msg.delete()
     
             })
           }
@@ -337,35 +340,35 @@ client.on('messageCreate', async (msg) => {
         categoryCollector.on('collect', async (i) => {
 
           if (i.values.includes('gameplay')) {
-            await client.channels.cache.get('968857527372611594').send(msg.content)
+            await client.channels.cache.get('968857527372611594').send({ embeds: [publicEmbed] })
           }
 
           if (i.values.includes('art-inspire')) {
-            await client.channels.cache.get('1066648380811526145').send(msg.content)
+            await client.channels.cache.get('1066648380811526145').send({ embeds: [publicEmbed] })
           }
 
           if (i.values.includes('design')) {
-            await client.channels.cache.get('968857360523198494').send(msg.content)
+            await client.channels.cache.get('968857360523198494').send({ embeds: [publicEmbed] })
           }
 
           if (i.values.includes('modern')) {
-            await client.channels.cache.get('968857326964572210').send(msg.content)
+            await client.channels.cache.get('968857326964572210').send({ embeds: [publicEmbed] })
           }
 
           if (i.values.includes('art')) {
-            await client.channels.cache.get('968859084075970611').send(msg.content)
+            await client.channels.cache.get('968859084075970611').send({ embeds: [publicEmbed] })
           }
 
           if (i.values.includes('neo-design')) {
-            await client.channels.cache.get('968884547242590228').send(msg.content)
+            await client.channels.cache.get('968884547242590228').send({ embeds: [publicEmbed] })
           }
 
           if (i.values.includes('effect')) {
-            await client.channels.cache.get('1027971116511281264').send(msg.content)
+            await client.channels.cache.get('1027971116511281264').send({ embeds: [publicEmbed] })
           }
 
           if (i.values.includes('other')) {
-            await client.channels.cache.get('968880591049228299').send(msg.content)
+            await client.channels.cache.get('968880591049228299').send({ embeds: [publicEmbed] })
           }
 
           await i.reply('sent ✅')
