@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits, ActivityType, EmbedBuilder, ComponentType } = require('discord.js');
-const categoryRow = require('../actionRows/categoryRow')
-const sendRow = require('../actionRows/sendRow')
+const categoryRow = require('./actionRows/categoryRow')
+const sendRow = require('./actionRows/sendRow')
 
 const client = new Client({
   intents: [
@@ -27,6 +27,7 @@ function commandsHandler (i) {
   if (i.isCommand('ping')) {
     return i.reply('Pong!')
   }
+  
 }
 
 function newMemberHandler (m) {

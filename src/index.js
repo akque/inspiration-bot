@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { onReady, client, commandsHandler, newMemberHandler, newWorkHandler } = require('./events/client')
+const { onReady, client, commandsHandler, newMemberHandler, newWorkHandler } = require('./client')
 
 client.on('ready', onReady)
 

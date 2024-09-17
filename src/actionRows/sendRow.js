@@ -1,7 +1,7 @@
 const { ActionRowBuilder } = require('discord.js')
 
-const sendButton = require('../buttons/sendButton')
-const cancelButton = require('../buttons/cancelButton')
+const sendButton = require('../elements/sendButton')
+const cancelButton = require('../elements/cancelButton')
 
 const sendRow = new ActionRowBuilder().addComponents(sendButton, cancelButton)
 
