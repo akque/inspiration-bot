@@ -1,4 +1,4 @@
-const categories = require('./categories')
+const categories = require('../categories')
 const { StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js')
 
 const selectMenu = new StringSelectMenuBuilder()
