@@ -23,6 +23,12 @@ function onReady (c) {
   client.channels.cache.get('969572233909506148').send('bot is ready 🟢')
 }
 
+function commandsHandler (i) {
+  if (i.isCommand('lawet')) {
+    return i.reply('Недавно геймплей креатор Lawet прилетел в Париж из Азербайджана на частном самолете. В Баку он с 19 августа проводил деловые переговоры, а ранее, в июле, провел несколько дней в Казахастане с той же целью. Постоянно живущий в ОАЭ бизнесмен прибыл в столицу Франции около 8 вечера по местному времени вместе с некоей женщиной и охранником. Как только он спустился по трапу на взлетную полосу аэропорта Ле Бурже, его задержали жандармы службы безопасности на воздушном транспорте. #FREELAWET')
+  }
+}
+
 function newMemberHandler (m) {
   return m.send(`<@${m.id}> Welcome to inspiration! To send a work read pinned message in <#1282413382372425748>`)
 }
@@ -110,21 +116,15 @@ async function newWorkHandler (msg) {
                 await client.channels.cache.get('968880591049228299').send({ embeds: [publicEmbed] })
               }
     
-              await i.reply('sent ✅')
-              await msg.author.send(`your work has been accepted and sent to: ${i.values} ✅`)
-              await categoryReply.delete()
-              await msg.delete()
+              categoryReply.delete()
+              if (msg) msg.delete()
     
             })
           }
         
           if (i.customId === 'cancel') {
-            i.reply('deleted ❌')
             reply.delete()
-            if (msg) {
-              msg.author.send('your work has been canceled ❌')
-              msg.delete()
-            }
+            if (msg) msg.delete()
           }
     
         })
@@ -203,21 +203,15 @@ async function newWorkHandler (msg) {
                 await client.channels.cache.get('968880591049228299').send({ embeds: [publicEmbed] })
               }
     
-              await i.reply('sent ✅')
-              await msg.author.send(`your work has been accepted and sent to: ${i.values} ✅`)
-              await categoryReply.delete()
-              await msg.delete()
+              categoryReply.delete()
+              if (msg) msg.delete()
     
             })
           }
         
           if (i.customId === 'cancel') {
-            i.reply('deleted ❌')
             reply.delete()
-            if (msg) {
-              msg.author.send('your work has been canceled ❌')
-              msg.delete()
-            }
+            if (msg) msg.delete()
           }
     
         })
@@ -257,53 +251,48 @@ async function newWorkHandler (msg) {
         categoryCollector.on('collect', async (i) => {
 
           if (i.values.includes('gameplay')) {
-            await client.channels.cache.get('968857527372611594').send({ embeds: [publicEmbed] })
+            await client.channels.cache.get('968857527372611594').send( msg.content )
           }
 
           if (i.values.includes('art-inspire')) {
-            await client.channels.cache.get('1066648380811526145').send({ embeds: [publicEmbed] })
+            await client.channels.cache.get('1066648380811526145').send(msg.content)
           }
 
           if (i.values.includes('design')) {
-            await client.channels.cache.get('968857360523198494').send({ embeds: [publicEmbed] })
+            await client.channels.cache.get('968857360523198494').send(msg.content)
           }
 
           if (i.values.includes('modern')) {
-            await client.channels.cache.get('968857326964572210').send({ embeds: [publicEmbed] })
+            await client.channels.cache.get('968857326964572210').send(msg.content)
           }
 
           if (i.values.includes('art')) {
-            await client.channels.cache.get('968859084075970611').send({ embeds: [publicEmbed] })
+            await client.channels.cache.get('968859084075970611').send(msg.content)
           }
 
           if (i.values.includes('neo-design')) {
-            await client.channels.cache.get('968884547242590228').send({ embeds: [publicEmbed] })
+            await client.channels.cache.get('968884547242590228').send(msg.content)
           }
 
           if (i.values.includes('effect')) {
-            await client.channels.cache.get('1027971116511281264').send({ embeds: [publicEmbed] })
+            await client.channels.cache.get('1027971116511281264').send(msg.content)
           }
 
           if (i.values.includes('other')) {
-            await client.channels.cache.get('968880591049228299').send({ embeds: [publicEmbed] })
+            await client.channels.cache.get('968880591049228299').send(msg.content)
           }
-
-          await i.reply('sent ✅')
-          await msg.author.send(`your work has been accepted and sent to: ${i.values} ✅`)
           await categoryReply.delete()
-
+          if (msg) msg.delete()
         })
       }
     
       if (i.customId === 'cancel') {
-        i.reply('deleted ❌')
-        msg.author.send('your work has been canceled ❌')
-        msg.delete()
         reply.delete()
+        if (msg) msg.delete()
       }
     }) 
 
   }
 }
 
-module.exports = { onReady, client, newMemberHandler, newWorkHandler }
+module.exports = { onReady, client, commandsHandler, newMemberHandler, newWorkHandler }
